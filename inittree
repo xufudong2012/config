@@ -1,0 +1,32 @@
+initTree:function(treeData,treeSetting,rootId){
+		var treeSrc = JSON.parse(JSON.stringify(treeData));
+        var data = [];
+        var treeMap = {};
+		var valueArr = [];
+		var parents={};
+        for (var i = 0,n=treeSrc.length; i < n; i++) {
+            var d = treeSrc[i];
+            treeMap[d[treeSetting.value]] = d;
+			valueArr.push(d[treeSetting.value]);
+			parents[d[treeSetting.parent]] = 1;
+		}
+        var num = Object.keys(parents).length;
+        for(var j=0;j<num;j++){
+            for(var i=(valueArr.length-1);i>=0;i--){
+                var id = valueArr[i];
+                var d = treeMap[id];
+                if(d[treeSetting.parent]){
+					if(d[treeSetting.parent] == rootId){
+						continue;
+					}
+                    var children = treeMap[d[treeSetting.parent]].children = treeMap[d[treeSetting.parent]].children ||[];
+                    children.splice(0,0,d);
+                    valueArr.splice(i,1);
+                }
+            }
+        }
+        for(var i=0,n=valueArr.length;i<n;i++){
+            data.push(treeMap[valueArr[i]])
+        }
+        return data;
+    }
