@@ -4,4 +4,4 @@ zuul:
             path: /api-a/**
             service-id: service-ribbon
         service-feign: /api-b/**
-aa
+aaadsfaf 
