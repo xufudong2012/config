@@ -8,3 +8,7 @@ eureka:
         waitTimeInMsWhenSyncEmpty: 0
     instance:
         hostname: localhost
+
+
+
+        test for one time
